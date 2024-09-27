@@ -1,5 +1,3 @@
-# README: Configuring an ASP.NET Core with Entity Framework Project
-
 ## Overview
 This document provides step-by-step instructions for setting up an existing ASP.NET Core project that utilizes Entity Framework Core for data access.
 
