@@ -1,0 +1,6 @@
+﻿@model ProductViewModel
+@section title{
+	<h2 class="text-center my-4">Editing Product: #@Model.product?.ProductId</h2>
+}
+
+<partial name="_Product" model="@Model" />

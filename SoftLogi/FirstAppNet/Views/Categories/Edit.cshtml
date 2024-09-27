@@ -1,0 +1,9 @@
+﻿@model Category
+
+@if(Model != null)
+{
+	<h2 class="text-center my-4">
+		Editing Category # @Model.CategoryId
+	</h2>
+	<partial name="_Category" model="@Model" />
+}

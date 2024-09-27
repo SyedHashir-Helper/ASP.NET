@@ -1,0 +1,49 @@
+﻿@model Category
+@{
+
+	string action = ViewBag.Action ?? string.Empty;
+}
+
+<div class="container">
+
+    <form method="post" asp-controller="categories" asp-action="@action" class="text-center">
+        @if (action.ToLower() == "edit")
+        {
+            <input type="hidden" asp-for="CategoryId" />
+        }
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <div class="mb-3">
+            <div class="col-12">
+                <label asp-for="Name" class="col-form-label">Name</label>
+                <input class="form-control" asp-for="Name" placeholder="Name" />
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="col-12">
+                <label asp-for="Description" class="col-form-label">Description</label>
+                <input class="form-control" asp-for="Description" required placeholder="Description" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <input class="btn" style="background-color: #3A3335; color: #FDF0D5;" type="submit" value="Submit" />
+            <a class="btn btn-secondary" asp-controller="categories" asp-action="index">Cancel</a> <!-- Cancel Button -->
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Additional styles to center the form */
+    .form-control {
+        width: 100%; /* Make input fields full width */
+        max-width: 400px; /* Optional max width */
+        margin: 0 auto; /* Center the form elements */
+    }
+
+    .btn {
+        margin-right: 10px; /* Spacing between buttons */
+    }
+</style>

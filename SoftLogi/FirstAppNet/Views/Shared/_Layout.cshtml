@@ -1,0 +1,77 @@
+﻿<html>
+	<head>
+		<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @RenderSection("selfcss", required: false)
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #3A3335; /* Dark background */
+        }
+
+        .navbar-brand {
+            color: #FDF0D5; /* Light text for the brand */
+        }
+
+        /* Button styles */
+        .nav-link {
+            color: #FDF0D5; /* Light text for buttons */
+            background-color: #3A3335; /* Dark background for buttons */
+            border-radius: 0.25rem; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            /* Button hover styles */
+        .nav-link:hover {
+            background-color: #FDF0D5; /* Light background on hover */
+            color: #3A3335; /* Dark text on hover */
+            border: 1px solid #3A3335; /* Dark border on hover */
+        }
+    </style>
+
+
+	</head>
+	<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #3A3335;">
+        <!-- Background Color -->
+        <a class="navbar-brand" href="#" style="color: #FDF0D5;"><i class="fas fa-store mr-2"></i>Super Mart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link btn" href="/home/index" style="border-radius: 0.25rem; margin-right: 0.5rem;"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="/categories" style="border-radius: 0.25rem; margin-right: 0.5rem;"><i class="fas fa-th-list"></i> Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="/products" style="border-radius: 0.25rem; margin-right: 0.5rem;"><i class="fas fa-box"></i> Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="/sales" style="border-radius: 0.25rem;"><i class="fas fa-shopping-cart"></i> Sales</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div>
+            @RenderSection("title", false)
+        </div>
+        <div>
+		    @RenderBody()
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+        crossorigin="anonymous">
+    </script>
+    @await RenderSectionAsync("Scripts", false)
+	</body>
+</html>

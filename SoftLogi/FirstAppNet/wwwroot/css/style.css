@@ -1,0 +1,17 @@
+﻿tr.highlight > td {
+    background-color: #3A3335;
+    color: #FDF0D5;
+}
+
+.nav-link {
+    transition: color 0.3s;
+}
+
+nav .navbar-brand:hover {
+    color: #ffeb3b; /* Yellow hover effect */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}

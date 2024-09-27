@@ -1,0 +1,48 @@
+﻿@section selfcss{
+	<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+}
+
+<header class="hero text-white text-center" style="background-image: url('https://images.unsplash.com/photo-1727246115849-eea4f2b85a65?q=80&w=1585&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; height: 60vh;">
+    <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="display-40">Welcome to MyStore!</h1>
+        <p class="lead">Your one-stop shop for amazing products.</p>
+        <a href="#products" class="btn btn-light btn-lg w-25">Shop Now</a>
+    </div>
+</header>
+<hr />
+
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center">About Us</h2>
+        <p class="text-center">We offer a wide range of products tailored to your needs. Quality and customer satisfaction are our top priorities.</p>
+    </div>
+</section>
+<hr />
+
+<section id="contact" class="py-5">
+    <div class="container">
+        <h2 class="text-center">Contact Us</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="btn text-white" style="background-color: #3A3335">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer class="text-white text-center py-4" style="background-color: #3A3335;">
+    <p>&copy; 2024 MyStore. All rights reserved.</p>
+</footer>
+

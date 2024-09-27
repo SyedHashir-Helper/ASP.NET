@@ -1,0 +1,39 @@
+﻿@model Product
+<h4>Product Details</h4>
+<div class="container custom-background">
+    <div class="form-group mb-3">
+        <label class="custom-label" asp-for="Name">Name</label>
+        <input class="form-control custom-input" value="@Model.Name" asp-for="Name" disabled />
+    </div>
+    <div class="form-group mb-3">
+        <label class="custom-label" asp-for="Price">Price</label>
+        <input class="form-control custom-input" value="@Model.Price" asp-for="Price" disabled />
+    </div>
+</div>
+
+<style>
+    /* Custom styles */
+    .custom-background {
+        background-color: #3A3335;
+        color: #FDF0D5;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .custom-label {
+        font-weight: bold;
+        color: #FDF0D5;
+    }
+
+    .custom-input {
+        background-color: #FDF0D5; /* Light background for input fields */
+        color: #3A3335; /* Dark text for input fields */
+        border: 1px solid #ccc; /* Light border for input fields */
+    }
+
+        .custom-input:disabled {
+            background-color: #f9f9f9; /* Light gray for disabled inputs */
+            color: #3A3335; /* Dark text for disabled inputs */
+        }
+
+</style>

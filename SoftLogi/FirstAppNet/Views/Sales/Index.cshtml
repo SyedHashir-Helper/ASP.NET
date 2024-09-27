@@ -1,0 +1,114 @@
+﻿@model SalesViewModel
+@section title{
+    <h2 class="text-center my-4">Cashier Panel</h2>
+    <hr />
+}
+
+<div class="row mx-3">
+    
+    <div class="col-3 my-3">
+        <!-- Section for selecting category and displaying products -->
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <div class="mb-3">
+            <label asp-for="SelectedCategoryId" class="col-form-label">Category</label>
+            <select asp-for="SelectedCategoryId" class="form-control">
+                <option>-Select Option-</option>
+                @if (Model.Categories != null && Model.Categories.Count() > 0)
+                {
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.CategoryId">@category.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div id="productPartial" class="mb-3">
+            <!-- Product list will be dynamically loaded here based on selected category -->
+        </div>
+
+    </div>
+    <div class="col-3 my-3">
+
+        <div id="product-detail" class="mt-3">
+            
+            <!-- Product details will be displayed here -->
+        </div>
+
+        <form method="post" asp-controller="sales" asp-action="sell" id="saleForm" class="mt-4">
+            <input type="hidden" asp-for="SelectedProductId" />
+            <div class="mb-3">
+                <label asp-for="QuantityToSell" class="col-form-label">Quantity</label>
+                <input asp-for="QuantityToSell" class="form-control" type="number" min="1" />
+            </div>
+            <div class="text-center">
+                <input class="btn" style="background-color: #3A3335; color: #FDF0D5;" type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+    <div class="col-6 my-3">
+        <!-- Section for displaying transactions -->
+        <h3 class="text-center">Transactions</h3>
+        @await Component.InvokeAsync("Transactions", "cashier1")
+    </div>
+</div>
+
+<style>
+    /* Custom styles to enhance the layout */
+    #salesForm .col-form-label {
+        font-weight: bold; /* Make labels bold */
+        text-align: left; /* Left align labels */
+    }
+
+     
+
+    #salesForm .btn {
+        margin-top: 10px; /* Space above the button */
+        margin-right: 10px; /* Space between buttons, if more added in the future */
+    }
+
+    /* Optional: Ensure form controls take full width */
+    #salesForm .form-control {
+        max-width: 400px; /* Optional max width */
+        margin: 0 auto; /* Center the form elements */
+    }
+</style>
+
+@section Scripts{
+	<script>
+
+		$(function(){
+			$('#saleForm').hide()
+			$('QuantityToSell').val('')
+			// var categoryId = ('#SelectedCategoryId').val()
+			// if(categoryId > 0){
+			// 	loadProducts(categoryId)
+			// }
+
+			$("#SelectedCategoryId").on('change', function(){
+				$('#productPartial').load("products/GetProductListByCategoryPartial", { categoryId: $(this).val() })
+				$('#product-detail').html("")
+				$('#saleForm').hide()
+				$('QuantityToSell').val('')
+			} )
+
+			$('#productPartial').on('click', '.product-row', function () {
+
+				$('.product-row').removeClass('highlight')
+				$(this).addClass('highlight')
+
+				var _productId = ($(this).attr('product-id'))
+				$('#product-detail').load("products/GetProductByIdPartial", { productId: _productId })
+				if(_productId > 0){
+					$('#SelectedProductId').val(_productId)
+					$('#saleForm').show()
+				}
+				else{
+					$('#SelectedProductId').val("")
+					$('#saleForm').hide()
+				}
+			})
+		})
+	</script>
+}

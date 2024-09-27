@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Transaction>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Cashier Name</th>
+			<th>Product Name</th>
+			<th>Date</th>
+			<th>Qty Before</th>
+			<th>Qty Solld</th>
+			<th>Qty After</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Count() > 0)
+		{
+			@foreach(var tran in Model)
+			{
+				<tr>
+					<th>@tran.CashierName</th>
+					<th>@tran.ProductName</th>
+					<th>@tran.TimeStamp</th>
+					<th>@tran.BeforeQuantity</th>
+					<th>@tran.SoldQuantity</th>
+					<th>@(tran.BeforeQuantity - tran.SoldQuantity)</th>
+					<th>@(tran.Price * tran.SoldQuantity)</th>
+				</tr>
+			
+			}
+		}
+	</tbody>
+</table>

@@ -1,0 +1,91 @@
+﻿@model ProductViewModel
+@{
+	string action = ViewBag.Action;
+}
+
+<div class="container">
+    <form method="post" asp-controller="products" asp-action="@action" class="text-center">
+        @if (action.ToLower() == "edit")
+        {
+            <input type="hidden" asp-for="product.ProductId" />
+        }
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <div class="mb-3 row justify-content-center">
+            <label asp-for="product.Name" class="col-form-label col-1 text-left">Name</label>
+            <div class="col-5">
+                <input class="form-control" asp-for="product.Name" placeholder="Enter Product Name" />
+            </div>
+            <div class="col-12 text-center">
+                <span class="text-danger" asp-validation-for="product.Name"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row justify-content-center">
+            <label asp-for="product.CategoryId" class="col-form-label col-1 text-left">Category</label>
+            <div class="col-5">
+                <select asp-for="product.CategoryId" class="form-control">
+                    <option>-Select Option-</option>
+                    @if (Model.categories != null && Model.categories.Count() > 0)
+                    {
+                        @foreach (var category in Model.categories)
+                        {
+                            <option value="@category.CategoryId">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-12 text-center">
+
+                <span class="text-danger" asp-validation-for="product.CategoryId"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row justify-content-center">
+            <label asp-for="product.Price" class="col-form-label col-1 text-left">Price</label>
+            <div class="col-5">
+                <input type="number" class="form-control" asp-for="product.Price" min="0" step="any" placeholder="Enter Price" />
+            </div>
+            <div class="col-12 text-center">
+                <span class="text-danger" asp-validation-for="product.Price"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row justify-content-center">
+            <label asp-for="product.Quantity" class="col-form-label col-1 text-left">Quantity</label>
+            <div class="col-5">
+                <input type="number" class="form-control" asp-for="product.Quantity" min="1" step="any" placeholder="Enter Quantity" />
+            </div>
+            <div class="col-12 text-center">
+                <span class="text-danger" asp-validation-for="product.Quantity"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row justify-content-center">
+            <label asp-for="product.Tags" class="col-form-label col-1 text-left">Tags</label>
+            <div class="col-5">
+                <input type="text" class="form-control" asp-for="product.Tags" placeholder="Enter tags separated by commas" />
+            </div>
+            <div class="col-12 text-center">
+                <span class="text-danger" asp-validation-for="product.Tags"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <input class="btn" style="background-color: #3A3335; color: #FDF0D5;" type="submit" value="Save" />
+            <a class="btn btn-secondary" asp-controller="products" asp-action="index">Cancel</a> <!-- Cancel Button -->
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Additional styles to center the form */
+    .form-control {
+        width: 100%; /* Make input fields full width */
+        max-width: 400px; /* Optional max width */
+    }
+
+    .btn {
+        margin-left: 10px; /* Spacing between buttons */
+    }
+</style>
