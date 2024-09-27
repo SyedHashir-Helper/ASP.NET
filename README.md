@@ -20,7 +20,7 @@ First, clone the repository containing the ASP.NET Core project:
 ```bash
 git clone <repository-url>
 cd <repository-folder>
-
+```
 ### 2. Restore NuGet Packages
 
 Using Visual Studio:
